@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Me | Marv</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>Hi, I'm Marv</h1>
+      <p class="tagline">Welcome to my personal website.</p>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#photos">Photos</a></li>
+          <li><a href="login.html">Login Area</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="about" class="section container">
+      <h2>About Me</h2>
+      <p>
+        I'm building this website as a clean place to share who I am, what I enjoy,
+        and a few snapshots from my life.
+      </p>
+    </section>
+
+    <section id="photos" class="section container">
+      <h2>Photos</h2>
+      <p>Here are a few sample photo slots you can replace with your own images.</p>
+      <div class="photo-grid">
+        <figure class="photo-card">
+          <img src="https://picsum.photos/seed/marv1/600/400" alt="Sample photo 1" />
+          <figcaption>Favorite place</figcaption>
+        </figure>
+        <figure class="photo-card">
+          <img src="https://picsum.photos/seed/marv2/600/400" alt="Sample photo 2" />
+          <figcaption>Weekend moment</figcaption>
+        </figure>
+        <figure class="photo-card">
+          <img src="https://picsum.photos/seed/marv3/600/400" alt="Sample photo 3" />
+          <figcaption>Something I love</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section container login-cta">
+      <h2>Private Area</h2>
+      <p>
+        Need to access private links? Go to the login area.
+      </p>
+      <a class="button" href="login.html">Go to Login</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Marv. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
