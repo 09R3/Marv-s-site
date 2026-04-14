@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marvicons Preview</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, sans-serif;
+      background: #f5f5f5;
+      color: #111;
+      padding: 40px;
+    }
+
+    h1 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 32px;
+      letter-spacing: -0.01em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 12px;
+    }
+
+    .icon-card {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      padding: 20px 12px 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      cursor: default;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .icon-card:hover {
+      border-color: #aaa;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .icon-card svg {
+      width: 24px;
+      height: 24px;
+      color: #111;
+    }
+
+    .icon-name {
+      font-size: 0.7rem;
+      color: #666;
+      text-align: center;
+      word-break: break-all;
+    }
+
+    /* Dark mode */
+    @media (prefers-color-scheme: dark) {
+      body { background: #1a1a1a; color: #eee; }
+      .icon-card { background: #252525; border-color: #333; }
+      .icon-card:hover { border-color: #666; box-shadow: 0 2px 8px rgba(0,0,0,0.4); }
+      .icon-card svg { color: #eee; }
+      .icon-name { color: #888; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Marvicons</h1>
+  <div class="grid">
+
+    <div class="icon-card">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6"  x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+      <span class="icon-name">menu</span>
+    </div>
+
+  </div>
+</body>
+</html>
