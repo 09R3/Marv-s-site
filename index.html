@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marvicons</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f7f7f7;
+      --surface: #fff;
+      --border: #e4e4e4;
+      --border-hover: #bbb;
+      --text: #111;
+      --text-muted: #888;
+      --accent: #111;
+      --accent-fg: #fff;
+      --shadow-hover: 0 4px 12px rgba(0,0,0,0.08);
+      --toast-bg: #111;
+      --toast-fg: #fff;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #141414;
+        --surface: #1e1e1e;
+        --border: #2e2e2e;
+        --border-hover: #555;
+        --text: #ebebeb;
+        --text-muted: #666;
+        --accent: #ebebeb;
+        --accent-fg: #111;
+        --shadow-hover: 0 4px 12px rgba(0,0,0,0.4);
+        --toast-bg: #ebebeb;
+        --toast-fg: #111;
+      }
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 48px 40px 0;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      margin-top: 6px;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    .toolbar {
+      margin-top: 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .search {
+      flex: 1;
+      max-width: 320px;
+      position: relative;
+    }
+
+    .search svg {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 14px;
+      height: 14px;
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .search input {
+      width: 100%;
+      padding: 8px 12px 8px 32px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.875rem;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .search input::placeholder { color: var(--text-muted); }
+    .search input:focus { border-color: var(--border-hover); }
+
+    .count {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    main {
+      padding: 28px 40px 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+      gap: 10px;
+    }
+
+    .icon-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 10px 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: border-color 0.15s, box-shadow 0.15s, transform 0.1s;
+      user-select: none;
+    }
+
+    .icon-card:hover {
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-1px);
+    }
+
+    .icon-card:active { transform: translateY(0); }
+
+    .icon-card svg {
+      width: 24px;
+      height: 24px;
+      color: var(--text);
+      flex-shrink: 0;
+    }
+
+    .icon-name {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      text-align: center;
+      word-break: break-all;
+      line-height: 1.3;
+    }
+
+    .empty {
+      grid-column: 1 / -1;
+      padding: 60px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(12px);
+      background: var(--toast-bg);
+      color: var(--toast-fg);
+      font-size: 0.8rem;
+      padding: 8px 16px;
+      border-radius: 8px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s, transform 0.2s;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Marvicons</h1>
+    <p class="subtitle">A collection of simple SVG icons.</p>
+    <div class="toolbar">
+      <div class="search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input type="search" id="search" placeholder="Search icons…" autocomplete="off" spellcheck="false">
+      </div>
+      <span class="count" id="count"></span>
+    </div>
+  </header>
+
+  <main>
+    <div class="grid" id="grid">
+
+      <div class="icon-card" data-name="menu">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6"  x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+        <span class="icon-name">menu</span>
+      </div>
+
+      <div class="icon-card" data-name="house">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 10.5L12 3l9 7.5V21H3V10.5z"/>
+          <path d="M9 21v-6h6v6"/>
+        </svg>
+        <span class="icon-name">house</span>
+      </div>
+
+      <div class="icon-card" data-name="gear">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+        <span class="icon-name">gear</span>
+      </div>
+
+    </div>
+  </main>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const grid   = document.getElementById('grid');
+    const search = document.getElementById('search');
+    const count  = document.getElementById('count');
+    const toast  = document.getElementById('toast');
+
+    const cards = Array.from(grid.querySelectorAll('.icon-card'));
+
+    function updateCount(visible) {
+      count.textContent = visible === cards.length
+        ? `${cards.length} icons`
+        : `${visible} of ${cards.length}`;
+    }
+
+    updateCount(cards.length);
+
+    search.addEventListener('input', () => {
+      const q = search.value.trim().toLowerCase();
+      let visible = 0;
+      cards.forEach(card => {
+        const match = !q || card.dataset.name.includes(q);
+        card.style.display = match ? '' : 'none';
+        if (match) visible++;
+      });
+
+      let empty = grid.querySelector('.empty');
+      if (visible === 0) {
+        if (!empty) {
+          empty = document.createElement('p');
+          empty.className = 'empty';
+          grid.appendChild(empty);
+        }
+        empty.textContent = `No icons matching "${search.value.trim()}"`;
+      } else if (empty) {
+        empty.remove();
+      }
+
+      updateCount(visible);
+    });
+
+    let toastTimer;
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        navigator.clipboard.writeText(card.dataset.name).then(() => {
+          toast.textContent = `Copied "${card.dataset.name}"`;
+          toast.classList.add('show');
+          clearTimeout(toastTimer);
+          toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

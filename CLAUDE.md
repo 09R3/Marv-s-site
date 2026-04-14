@@ -31,7 +31,7 @@ A collection of simple SVG icons for use across the site.
 
 Whenever a new icon is added:
 1. Create the SVG file in `icons/`.
-2. Add a matching card to `preview.html` inside the `.grid` div, with the inline SVG and the filename (without `.svg`) as the label.
+2. Add a matching card to `index.html` inside the `.grid` div, with the inline SVG and `data-name` set to the filename (without `.svg`).
 3. Commit both files together.
 
 ## SVG Template
