@@ -27,6 +27,13 @@ A collection of simple SVG icons for use across the site.
 ### File Location
 - All icons live in `icons/` at the root of the repository.
 
+## Workflow
+
+Whenever a new icon is added:
+1. Create the SVG file in `icons/`.
+2. Add a matching card to `preview.html` inside the `.grid` div, with the inline SVG and the filename (without `.svg`) as the label.
+3. Commit both files together.
+
 ## SVG Template
 
 ```svg
