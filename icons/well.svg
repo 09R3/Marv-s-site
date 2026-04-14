@@ -1,13 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-  <!-- Side walls -->
-  <line x1="7" y1="6" x2="7" y2="21"/>
-  <line x1="17" y1="6" x2="17" y2="21"/>
-  <!-- Base -->
-  <line x1="7" y1="21" x2="17" y2="21"/>
-  <!-- Peaked roof triangle -->
-  <polygon points="4 6 12 2 20 6"/>
-  <!-- Windlass bar -->
-  <line x1="7" y1="9" x2="17" y2="9"/>
-  <!-- Water overflowing the rim -->
-  <path d="M5 13Q7 11 9 13Q11 15 13 13Q15 11 17 13Q19 15 20 13"/>
+  <!-- Base flange -->
+  <line x1="9" y1="21" x2="15" y2="21"/>
+  <!-- Pump pipe -->
+  <line x1="12" y1="21" x2="12" y2="14"/>
+  <!-- Pump head/body -->
+  <rect x="9" y="9" width="6" height="5" rx="2"/>
+  <!-- Lever handle: arcs up and left from pump head top -->
+  <path d="M10 9C9 4 4 5 4 11"/>
+  <!-- Spout -->
+  <line x1="15" y1="12" x2="19" y2="12"/>
+  <!-- Water stream -->
+  <path d="M19 12C21 13 21 16 20 18"/>
 </svg>
