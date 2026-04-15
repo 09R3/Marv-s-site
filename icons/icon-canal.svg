@@ -1,6 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-  <!-- Canal banks meeting the wavy waterline -->
-  <path d="M1 0L4 10Q6 7 8 10Q10 7 12 10Q14 7 16 10Q18 7 20 10L23 0"/>
-  <!-- Canal body below waterline: inner walls + curved floor -->
-  <path d="M4 10L5 21Q12 23 19 21L20 10"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+     stroke="black" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+
+  <!-- Canal banks -->
+  <path d="M4 6 L8 20"/>
+  <path d="M20 6 L16 20"/>
+
+  <!-- Water line meeting the sides -->
+  <path d="M4.9 9 C7.5 8,9.5 10,12 9 C14.5 8,16.5 10,19.1 9"/>
+
+  <!-- Bottom edge -->
+  <path d="M8 20 H16"/>
+
 </svg>
