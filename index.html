@@ -14,11 +14,11 @@
       --border-hover: #bbb;
       --text: #111;
       --text-muted: #888;
-      --accent: #111;
-      --accent-fg: #fff;
       --shadow-hover: 0 4px 12px rgba(0,0,0,0.08);
       --toast-bg: #111;
       --toast-fg: #fff;
+      --code-bg: #f3f3f3;
+      --default-icon-color: #111111;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -29,11 +29,11 @@
         --border-hover: #555;
         --text: #ebebeb;
         --text-muted: #666;
-        --accent: #ebebeb;
-        --accent-fg: #111;
         --shadow-hover: 0 4px 12px rgba(0,0,0,0.4);
         --toast-bg: #ebebeb;
         --toast-fg: #111;
+        --code-bg: #141414;
+        --default-icon-color: #ebebeb;
       }
     }
 
@@ -113,6 +113,141 @@
       margin: 0 auto;
     }
 
+    /* ── Detail panel ───────────────────────────────────── */
+
+    .detail {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+      position: relative;
+      animation: detail-in 0.15s ease;
+    }
+
+    @keyframes detail-in {
+      from { opacity: 0; transform: translateY(-6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .detail-preview {
+      width: 120px;
+      height: 120px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .detail-preview svg {
+      width: 80px;
+      height: 80px;
+    }
+
+    .detail-body {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .detail-name {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .detail-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .color-swatch-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .color-swatch-wrap input[type="color"] {
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 2px;
+      background: var(--surface);
+      cursor: pointer;
+    }
+
+    .btn {
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+      white-space: nowrap;
+    }
+
+    .btn:hover { border-color: var(--border-hover); }
+
+    .btn-active {
+      background: var(--text);
+      color: var(--bg);
+      border-color: var(--text);
+    }
+
+    .detail-code {
+      font-family: ui-monospace, 'Cascadia Code', 'Fira Code', monospace;
+      font-size: 0.78rem;
+      line-height: 1.6;
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+      overflow-x: auto;
+      white-space: pre;
+      color: var(--text);
+    }
+
+    .detail-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 26px;
+      height: 26px;
+      border: none;
+      background: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1.1rem;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      transition: color 0.15s, background 0.15s;
+    }
+
+    .detail-close:hover {
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    /* ── Grid ───────────────────────────────────────────── */
+
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
@@ -141,6 +276,10 @@
 
     .icon-card:active { transform: translateY(0); }
 
+    .icon-card.selected {
+      border-color: var(--text);
+    }
+
     .icon-card svg {
       width: 24px;
       height: 24px;
@@ -164,7 +303,8 @@
       font-size: 0.875rem;
     }
 
-    /* Toast */
+    /* ── Toast ──────────────────────────────────────────── */
+
     .toast {
       position: fixed;
       bottom: 28px;
@@ -204,37 +344,153 @@
   </header>
 
   <main>
+    <div id="detail-wrap"></div>
     <div class="grid" id="grid"></div>
   </main>
 
   <div class="toast" id="toast"></div>
 
   <script>
-    const grid   = document.getElementById('grid');
-    const search = document.getElementById('search');
-    const countEl = document.getElementById('count');
-    const toast  = document.getElementById('toast');
+    const grid      = document.getElementById('grid');
+    const detailWrap = document.getElementById('detail-wrap');
+    const search    = document.getElementById('search');
+    const countEl   = document.getElementById('count');
+    const toast     = document.getElementById('toast');
+
+    // Pick a sensible default color for the picker based on color scheme
+    const defaultColor = window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? '#ebebeb' : '#111111';
 
     let cards = [];
+    let selectedCard = null;
+    let toastTimer;
 
+    // ── Toast helper ────────────────────────────────────
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
+    }
+
+    // ── Count ────────────────────────────────────────────
     function updateCount(visible) {
       countEl.textContent = visible === cards.length
         ? `${cards.length} icons`
         : `${visible} of ${cards.length}`;
     }
 
-    let toastTimer;
-    function bindCard(card) {
-      card.addEventListener('click', () => {
-        navigator.clipboard.writeText(card.dataset.name).then(() => {
-          toast.textContent = `Copied "${card.dataset.name}"`;
-          toast.classList.add('show');
-          clearTimeout(toastTimer);
-          toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
-        });
+    // ── Detail panel ─────────────────────────────────────
+    function openDetail(card) {
+      // Deselect previous
+      if (selectedCard && selectedCard !== card) {
+        selectedCard.classList.remove('selected');
+      }
+
+      // Toggle closed if clicking the same card
+      if (selectedCard === card && detailWrap.firstChild) {
+        closeDetail();
+        return;
+      }
+
+      selectedCard = card;
+      card.classList.add('selected');
+
+      const name    = card.dataset.name;
+      const svgText = card._svgText;
+
+      // Build panel
+      const panel = document.createElement('div');
+      panel.className = 'detail';
+
+      // Preview
+      const preview = document.createElement('div');
+      preview.className = 'detail-preview';
+      preview.style.color = defaultColor;
+      preview.innerHTML = svgText;
+
+      // Body
+      const body = document.createElement('div');
+      body.className = 'detail-body';
+
+      const nameEl = document.createElement('span');
+      nameEl.className = 'detail-name';
+      nameEl.textContent = name;
+
+      // Controls row
+      const controls = document.createElement('div');
+      controls.className = 'detail-controls';
+
+      const colorWrap = document.createElement('label');
+      colorWrap.className = 'color-swatch-wrap';
+      colorWrap.textContent = 'Color\u00a0';
+      const colorPicker = document.createElement('input');
+      colorPicker.type = 'color';
+      colorPicker.value = defaultColor;
+      colorPicker.addEventListener('input', () => {
+        preview.style.color = colorPicker.value;
       });
+      colorWrap.appendChild(colorPicker);
+
+      const copyNameBtn = document.createElement('button');
+      copyNameBtn.className = 'btn';
+      copyNameBtn.textContent = 'Copy name';
+      copyNameBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(name).then(() => showToast(`Copied "${name}"`));
+      });
+
+      const copySvgBtn = document.createElement('button');
+      copySvgBtn.className = 'btn';
+      copySvgBtn.textContent = 'Copy SVG';
+      copySvgBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(svgText).then(() => showToast('SVG copied'));
+      });
+
+      const showCodeBtn = document.createElement('button');
+      showCodeBtn.className = 'btn';
+      showCodeBtn.textContent = 'Show code';
+
+      controls.append(colorWrap, copyNameBtn, copySvgBtn, showCodeBtn);
+
+      // Code block
+      const codeEl = document.createElement('pre');
+      codeEl.className = 'detail-code';
+      codeEl.textContent = svgText;
+      codeEl.hidden = true;
+
+      showCodeBtn.addEventListener('click', () => {
+        const visible = codeEl.hidden;
+        codeEl.hidden = !visible;
+        showCodeBtn.textContent = visible ? 'Hide code' : 'Show code';
+        showCodeBtn.classList.toggle('btn-active', visible);
+      });
+
+      body.append(nameEl, controls, codeEl);
+
+      // Close button
+      const closeBtn = document.createElement('button');
+      closeBtn.className = 'detail-close';
+      closeBtn.innerHTML = '&#x2715;';
+      closeBtn.setAttribute('aria-label', 'Close');
+      closeBtn.addEventListener('click', closeDetail);
+
+      panel.append(preview, body, closeBtn);
+
+      // Swap in
+      detailWrap.innerHTML = '';
+      detailWrap.appendChild(panel);
+      panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
+    function closeDetail() {
+      detailWrap.innerHTML = '';
+      if (selectedCard) {
+        selectedCard.classList.remove('selected');
+        selectedCard = null;
+      }
+    }
+
+    // ── Search ───────────────────────────────────────────
     search.addEventListener('input', () => {
       const q = search.value.trim().toLowerCase();
       let visible = 0;
@@ -259,6 +515,7 @@
       updateCount(visible);
     });
 
+    // ── Load icons ───────────────────────────────────────
     async function loadIcons() {
       const names = await fetch('icons.json').then(r => r.json());
 
@@ -267,15 +524,13 @@
         const card = document.createElement('div');
         card.className = 'icon-card';
         card.dataset.name = name;
+        card._svgText = svgText;
         card.innerHTML = svgText + `<span class="icon-name">${name}</span>`;
+        card.addEventListener('click', () => openDetail(card));
         return card;
       }));
 
-      results.forEach(card => {
-        grid.appendChild(card);
-        bindCard(card);
-      });
-
+      results.forEach(card => grid.appendChild(card));
       cards = results;
       updateCount(cards.length);
     }
