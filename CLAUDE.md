@@ -17,12 +17,12 @@ A collection of simple SVG icons for use across the site.
 - Simple line drawings — minimal, clean, no decorative detail.
 - Rounded line caps and joins: `stroke-linecap="round"` and `stroke-linejoin="round"`.
 - Avoid sharp corners unless the subject matter specifically requires them (e.g. a diamond shape).
-- Consistent stroke width across the set — default to `stroke-width="2"`.
+- Consistent stroke width across the set — default to `stroke-width="1"`.
 
 ### Naming
 - File names are lowercase, generic, and descriptive of what the icon represents.
-- Use a single word where possible: `wrench.svg`, `star.svg`, `bell.svg`.
-- For multi-word icons use hyphens: `arrow-right.svg`, `check-circle.svg`.
+- they should all be multi word and start with icon- then what they are for: `icon-well.svg`, `icon-circle.svg`
+
 
 ### File Location
 - All icons live in `icons/` at the root of the repository.
