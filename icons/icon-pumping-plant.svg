@@ -1,18 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <defs>
     <mask id="cutout">
       <rect width="24" height="24" fill="white"/>
       <circle cx="17.5" cy="17.5" r="4" fill="black"/>
     </mask>
   </defs>
-  <!-- Droplet outline, masked where clock sits -->
-  <path
-    d="M12 2C12 2 5 10 5 14.5C5 18.09 8.13 21 12 21C15.87 21 19 18.09 19 14.5C19 10 12 2 12 2Z"
-    stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
-    mask="url(#cutout)"
-  />
-  <!-- Clock -->
-  <circle cx="17.5" cy="17.5" r="4" stroke="currentColor" stroke-width="1" fill="none"/>
-  <line x1="17.5" y1="17.5" x2="17.5" y2="15.5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
-  <line x1="17.5" y1="17.5" x2="19" y2="17.5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+  <path d="M12 2C12 2 5 10 5 14.5C5 18.09 8.13 21 12 21C15.87 21 19 18.09 19 14.5C19 10 12 2 12 2Z" mask="url(#cutout)"/>
+  <circle cx="17.5" cy="17.5" r="4" fill="none"/>
+  <line x1="17.5" y1="17.5" x2="17.5" y2="15.5"/>
+  <line x1="17.5" y1="17.5" x2="19" y2="17.5"/>
 </svg>
