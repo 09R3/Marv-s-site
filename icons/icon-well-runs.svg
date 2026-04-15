@@ -1,10 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
   <!-- Left fold panel -->
-  <path d="M2 5L7 3L7 20L2 22Z"/>
-  <!-- Centre panel -->
-  <rect x="7" y="3" width="10" height="17"/>
-  <!-- Right fold panel -->
-  <path d="M17 3L22 5L22 22L17 20Z"/>
+
+  <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/>
+  <line x1="8"  y1="2"  x2="8"  y2="18"/>
+  <line x1="16" y1="6"  x2="16" y2="22"/>
+
+
   <!-- Well dots scattered across all three panels -->
   <circle cx="4"  cy="9"  r="0.8" fill="currentColor" stroke="none"/>
   <circle cx="4"  cy="15" r="0.8" fill="currentColor" stroke="none"/>
