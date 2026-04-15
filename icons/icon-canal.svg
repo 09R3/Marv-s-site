@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Canal banks meeting the wavy waterline -->
+  <path d="M1 0L4 10Q6 7 8 10Q10 7 12 10Q14 7 16 10Q18 7 20 10L23 0"/>
+  <!-- Canal body below waterline: inner walls + curved floor -->
+  <path d="M4 10L5 21Q12 23 19 21L20 10"/>
+</svg>
