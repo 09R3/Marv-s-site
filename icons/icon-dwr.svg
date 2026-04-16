@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-  <!-- Water surface -->
-  <path d="M3 16Q7 12 12 16Q17 12 21 16V21H3z"/>
-  <!-- Staff gauge (measurement pole) -->
-  <line x1="12" y1="3" x2="12" y2="16"/>
-  <!-- Tick marks -->
-  <line x1="12" y1="6"  x2="15" y2="6"/>
-  <line x1="12" y1="10" x2="14" y2="10"/>
-  <line x1="12" y1="14" x2="15" y2="14"/>
+  <!-- D -->
+  <path d="M2 4 L2 20 L5 20 Q9 20 9 12 Q9 4 5 4 Z"/>
+  <!-- W -->
+  <polyline points="9 4 11 20 12.5 13 14 20 16 4"/>
+  <!-- R -->
+  <line x1="17" y1="4" x2="17" y2="20"/>
+  <path d="M17 4 L20 4 Q23 4 23 8 Q23 12 17 12"/>
+  <line x1="19.5" y1="12" x2="23" y2="20"/>
 </svg>
