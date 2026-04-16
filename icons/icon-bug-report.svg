@@ -1,7 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-  <ellipse cx="12" cy="14" rx="4" ry="5"/>
-  <circle cx="12" cy="5" r="2"/>
-  <path d="M10 5L8 2M14 5L16 2"/>
-  <path d="M8 12L4 10M8 14L4 14M8 16L4 18"/>
-  <path d="M16 12L20 10M16 14L20 14M16 16L20 18"/>
+  <!-- Body segments -->
+  <circle cx="3"  cy="16" r="2"/>
+  <circle cx="7"  cy="16" r="2"/>
+  <circle cx="11" cy="16" r="2"/>
+  <!-- Head -->
+  <circle cx="17" cy="14" r="3"/>
+  <!-- Eye -->
+  <circle cx="18" cy="13" r="0.5" fill="currentColor" stroke="none"/>
+  <!-- Antennae -->
+  <line x1="15.5" y1="11.5" x2="13" y2="8"/>
+  <line x1="17.5" y1="11"   x2="20" y2="8"/>
 </svg>

@@ -5,11 +5,11 @@
       <path d="M20 16C18 18.5 18 21 20 21C22 21 22 18.5 20 16Z" fill="black"/>
     </mask>
   </defs>
-  <!-- Map panels (masked where drop sits) -->
+  <!-- Map (from icon-map) with dots, masked where drop sits -->
   <g mask="url(#well-runs-drop)">
-    <path d="M2 5L7 3L7 20L2 22Z"/>
-    <rect x="7" y="3" width="10" height="17"/>
-    <path d="M17 3L22 5L22 22L17 20Z"/>
+    <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/>
+    <line x1="8"  y1="2"  x2="8"  y2="18"/>
+    <line x1="16" y1="6"  x2="16" y2="22"/>
     <circle cx="4"  cy="9"  r="0.8" fill="currentColor" stroke="none"/>
     <circle cx="4"  cy="15" r="0.8" fill="currentColor" stroke="none"/>
     <circle cx="10" cy="7"  r="0.8" fill="currentColor" stroke="none"/>
