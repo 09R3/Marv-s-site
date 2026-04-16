@@ -1,8 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-  <!-- Jerry can body -->
-  <rect x="5" y="4" width="13" height="19" rx="1"/>
-  <!-- Cap/spout at top-right -->
-  <rect x="13" y="2" width="5" height="3" rx="1"/>
-  <!-- Handle (rectangular loop on left side) -->
-  <path d="M5 8 L2 8 L2 14 L5 14"/>
+  <!-- Jug body -->
+  <rect x="2" y="9" width="18" height="13" rx="1"/>
+  <!-- Handle arch (top, left portion) -->
+  <path d="M5 9 Q5 3 10 3 Q14 3 14 9"/>
+  <!-- Spout neck -->
+  <rect x="14" y="6" width="4" height="4" rx="0.5"/>
+  <!-- Spout cap -->
+  <rect x="13" y="4" width="6" height="3" rx="0.5"/>
 </svg>
