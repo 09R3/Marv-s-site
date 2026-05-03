@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Pond outline -->
+  <ellipse cx="12" cy="12" rx="10" ry="8"/>
+  <!-- Water surface lines -->
+  <path d="M4 10 C6 9 8 11 10 10 C12 9 14 11 16 10 C18 9 19.5 10 20 10"/>
+  <path d="M4 14 C6 13 8 15 10 14 C12 13 14 15 16 14 C18 13 19.5 14 20 14"/>
+</svg>
