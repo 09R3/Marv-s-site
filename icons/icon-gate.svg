@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Handwheel -->
+  <circle cx="12" cy="3" r="2"/>
+  <line x1="10" y1="3" x2="14" y2="3"/>
+  <line x1="12" y1="1" x2="12" y2="5"/>
+  <!-- Stem -->
+  <line x1="12" y1="5" x2="12" y2="12"/>
+  <!-- Frame rails -->
+  <line x1="4" y1="5" x2="4" y2="22"/>
+  <line x1="20" y1="5" x2="20" y2="22"/>
+  <!-- Top crossbar -->
+  <line x1="4" y1="5" x2="20" y2="5"/>
+  <!-- Gate disc -->
+  <circle cx="12" cy="17" r="5"/>
+</svg>
