@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Head -->
+  <circle cx="9" cy="7" r="3.5"/>
+  <!-- Body -->
+  <path d="M2 21 C2 16 5.5 12.5 9 12.5 C12.5 12.5 16 16 16 21"/>
+  <!-- Badge -->
+  <rect x="14" y="1" width="8" height="8" rx="1.5"/>
+  <!-- Checkmark -->
+  <polyline points="16 5.5 17.5 7 20 3.5"/>
+</svg>
