@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Main frame -->
+  <line x1="3" y1="12" x2="21" y2="12"/>
+  <!-- Cab -->
+  <path d="M9 12 L9 6 L10 5 L14 5 L14 12"/>
+  <!-- Front hood -->
+  <path d="M3 12 L3 10 L9 10"/>
+  <!-- Front wheel -->
+  <circle cx="4.5" cy="19" r="2.5"/>
+  <!-- Rear tandem wheels -->
+  <circle cx="17" cy="19" r="2.5"/>
+  <circle cx="20.5" cy="19" r="2.5"/>
+  <!-- Grading blade (angled) -->
+  <path d="M9 13 L9 17 L13 18.5 L13 14 Z"/>
+</svg>

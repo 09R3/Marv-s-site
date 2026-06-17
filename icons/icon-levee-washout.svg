@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Levee profile with eroded breach -->
+  <path d="M1 21 L6 8 L9 8 L10 13 L11.5 9.5 L13 13 L14 8 L18 8 L23 21"/>
+  <!-- Water flowing through the breach -->
+  <path d="M10.5 14 C11 16 12 16.5 11.5 19"/>
+</svg>
